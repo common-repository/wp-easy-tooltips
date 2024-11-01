@@ -1,0 +1,6 @@
+TODO
+
+- Object oriented plugin
+- Theme loader
+- Pro version
+- Themes

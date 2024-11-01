@@ -1,0 +1,140 @@
+/* Inspired by an open source project from Tympanus.net */
+/* Many thanks to them for their awesome work */
+
+/* We don't display the tooltip on small screen for reading confort. */
+@media (max-width: 400px) {
+    .wpetp-tooltip {
+        display: none;
+        position: relative;
+        z-index: 999;
+    }
+    
+    .wpetp-tooltip-item {
+        display: inline-block;
+        cursor: auto !important;
+        font-weight: normal !important;
+    }
+
+    .wpetp-tooltip-content {
+        display: none;
+    }
+}
+
+/* But we do on larger screens ! */
+@media (min-width: 400px) {
+    .wpetp-tooltip {
+        display: inline;
+        position: relative;
+        z-index: 999;
+    }
+
+    /* Trigger text */
+
+    .wpetp-tooltip-item {
+        cursor: pointer;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    /* Gap filler */
+
+    .wpetp-tooltip-item::after {
+        content: '';
+        position: absolute;
+        width: 360px;
+        height: 20px;
+        bottom: 100%;
+        left: 50%;
+        pointer-events: none;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+    .wpetp-tooltip:hover .wpetp-tooltip-item::after {
+        pointer-events: auto;
+    }
+
+    /* Tooltip */
+
+    .wpetp-tooltip-content {
+        position: absolute;
+        z-index: 9999;
+        width: 360px;
+        left: 50%;
+        margin: 0 0 20px -180px;
+        bottom: 100%;
+        text-align: left;
+        font-size: 0.9em;
+        line-height: 1.4;
+        box-shadow: -5px -5px 15px rgba(48,54,61,0.2);
+        background: #2a3035;
+        opacity: 0;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    .wpetp-tooltip-effect .wpetp-tooltip-content {
+        -webkit-transform-origin: 50% calc(100% + 10px);
+        transform-origin: 50% calc(100% + 10px);
+        -webkit-transform: perspective(1000px) rotate3d(1,0,0,45deg);
+        transform: perspective(1000px) rotate3d(1,0,0,45deg);
+        -webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
+        transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .wpetp-tooltip:hover .wpetp-tooltip-content {
+        pointer-events: auto;
+        opacity: 1;
+        -webkit-transform: translate3d(0,0,0) rotate3d(0,0,0,0);
+        transform: translate3d(0,0,0) rotate3d(0,0,0,0);
+    }
+
+    .wpetp-tooltip.wpetp-tooltip-effect:hover .wpetp-tooltip-content {
+        -webkit-transform: perspective(1000px) rotate3d(1,0,0,0deg);
+        transform: perspective(1000px) rotate3d(1,0,0,0deg);
+    }
+
+    /* Arrow */
+
+    .wpetp-tooltip-content::after {
+        content: '';	top: 100%;
+        left: 50%;
+        border: solid transparent;
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: transparent;
+        border-top-color: #2a3035;
+        border-width: 10px;
+        margin-left: -10px;
+    }
+
+    /* Tooltip content*/
+
+    .wpetp-tooltip-content img.wpetp-portrait {
+        position: relative;
+        height: 170px;
+        display: block;
+        float: left;
+        margin-right: 1em;
+    }
+
+    .wpetp-tooltip-text {
+        font-size: 0.68em;
+        line-height: 1.3;
+        display: block;
+        padding: 1.31em 1.21em 1.21em 0;
+        color: #fff;
+    }
+
+    .wpetp-tooltip-text.full-width {
+        padding: 1.31em 1.21em 1.21em 1.31em;
+    }
+
+    .wpetp-tooltip-text a {
+        color: aqua;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}
